@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:property-placeholder
+		location="classpath:email.properties" />
+
+	<bean id="emailBean" class="spring01.model.EmailInfoService"
+		scope="prototype" init-method="initMethod" destroy-method="endMethod" />
+
+	<bean id="dbBean" class="spring01.model.DbInfoService"
+		scope="singleton" init-method="initMethod" destroy-method="endMethod" />
+
+
+	<bean id="emailConst" class="spring01.model.EmailInfoService">
+		<constructor-arg value="sit.sit@kmutt.ac.th"></constructor-arg>
+	</bean>
+
+	<bean id="emailSetter" class="spring01.model.EmailInfoService">
+		<property name="address" value="sit@kmutt.ac.th"></property>
+	</bean>
+	
+	
+	<bean id="emailProp" class="spring01.model.EmailInfoService">
+		<property name="address" value="${email.address}"></property>
+	</bean>
+
+</beans>
